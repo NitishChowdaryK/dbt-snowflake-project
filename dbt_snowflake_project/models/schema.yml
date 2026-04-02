@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: 'Staged orders data from Snowflake sample TPC-H dataset'
+    columns:
+      - name: order_id
+        description: 'Unique order identifier'
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+      - name: total_price
+        tests:
+          - not_null
+
+  - name: int_orders_filtered
+    description: 'Fulfilled orders with total price over 1000'
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+
+  - name: mart_sales_summary
+    description: 'Daily sales summary aggregated by order priority'
+    columns:
+      - name: total_orders
+        tests:
+          - not_null
+      - name: total_revenue
+        tests:
+          - not_null
